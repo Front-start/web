@@ -1,14 +1,14 @@
-import path from 'path'
-import webpack from 'webpack'
-import autoprefixer from 'autoprefixer'
-import htmlTemplate from 'html-webpack-template'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import path from 'path';
+import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
+import htmlTemplate from 'html-webpack-template';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 
-export const mode = 'production'
+export const mode = 'production';
 
 export const optimization = {
   removeAvailableModules: false,
@@ -25,46 +25,46 @@ export const optimization = {
       default: {
         minChunks: 2,
         priority: -20,
-        reuseExistingChunk: true,
-      },
-    },
+        reuseExistingChunk: true
+      }
+    }
   },
   minimizer: [
     new TerserPlugin({
       terserOptions: {
         parse: {
-          ecma: '8',
+          ecma: '8'
         },
         compress: {
           ecma: 5,
           warnings: false,
           comparisons: false,
-          inline: 2,
+          inline: 2
         },
         mangle: {
-          safari10: true,
+          safari10: true
         },
         output: {
           ecma: 5,
           comments: false,
-          ascii_only: true,
-        },
+          ascii_only: true
+        }
       },
       parallel: true,
       cache: true,
-      sourceMap: false,
+      sourceMap: false
     }),
-    new OptimizeCSSAssetsPlugin({}),
-  ],
-}
+    new OptimizeCSSAssetsPlugin({})
+  ]
+};
 
-export const entry = ['@babel/polyfill', './src/index']
+export const entry = ['@babel/polyfill', './src/index'];
 
 export const output = {
   path: path.join(__dirname, '../../dist'),
   filename: '[name].[hash].js',
-  publicPath: '/',
-}
+  publicPath: '/'
+};
 
 export const module = {
   rules: [
@@ -77,27 +77,28 @@ export const module = {
           query: {
             babelrc: false,
             presets: [
+              '@babel/preset-typescript',
               [
                 '@babel/preset-env',
                 {
                   targets: {
-                    browsers: '> 0.25%, not dead',
+                    browsers: '> 0.25%, not dead'
                   },
                   useBuiltIns: 'usage',
-                  modules: false,
-                },
+                  corejs: '3',
+                  modules: false
+                }
               ],
-              '@babel/preset-typescript',
-              '@babel/preset-react',
+              '@babel/preset-react'
             ],
             plugins: [
-              'react-hot-loader/babel',
-              '@babel/plugin-proposal-class-properties',
-              '@babel/plugin-syntax-dynamic-import',
-            ],
-          },
-        },
-      ],
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
+              '@babel/plugin-syntax-dynamic-import'
+            ]
+          }
+        }
+      ]
     },
     {
       test: /\.css$/,
@@ -109,12 +110,12 @@ export const module = {
           options: {
             plugins: () => [
               autoprefixer({
-                overrideBrowserslist: ['>2%', 'last 2 versions'],
-              }),
-            ],
-          },
-        },
-      ],
+                overrideBrowserslist: ['>2%', 'last 2 versions']
+              })
+            ]
+          }
+        }
+      ]
     },
     {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
@@ -122,36 +123,35 @@ export const module = {
         {
           loader: 'file-loader?name=[name].[ext]',
           options: {
-            outputPath: 'assets',
-          },
-        },
-      ],
-    },
-  ],
-}
+            outputPath: 'assets'
+          }
+        }
+      ]
+    }
+  ]
+};
 
 export const resolve = {
-  extensions: ['.ts', '.tsx', '.js', '.json'],
-}
+  extensions: ['.ts', '.tsx', '.js', '.json']
+};
 
 export const plugins = [
   new MiniCssExtractPlugin({
-    filename: '[name].[hash].css',
+    filename: '[name].[hash].css'
   }),
   new HtmlWebpackPlugin({
     title: 'Atlantis United',
     inject: false,
     template: htmlTemplate,
-    appMountId: 'app',
+    appMountId: 'app'
   }),
   new webpack.ProvidePlugin({
-    fetch:
-      'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch',
+    fetch: 'imports-loader?this=>global!exports-loader?global.fetch!whatwg-fetch'
   }),
   new CopyWebpackPlugin([
     {
       from: path.join(__dirname, '..', '..', 'assets'),
-      to: 'assets',
-    },
-  ]),
-]
+      to: 'assets'
+    }
+  ])
+];

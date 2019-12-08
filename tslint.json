@@ -1,5 +1,10 @@
 {
   "extends": ["tslint:latest"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
   "rules": {
     "quotemark": [true, "single"],
     "semicolon": [true, "never"],

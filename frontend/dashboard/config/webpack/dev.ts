@@ -1,17 +1,17 @@
-import webpack from 'webpack'
-import autoprefixer from 'autoprefixer'
-import htmlTemplate from 'html-webpack-template'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
+import htmlTemplate from 'html-webpack-template';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-export const mode = 'development'
+export const mode = 'development';
 
-export const entry = ['@babel/polyfill', './src/index']
+export const entry = ['@babel/polyfill', './src/index'];
 
 export const output = {
   filename: '[name].js',
   publicPath: '/',
-  path: '/',
-}
+  path: '/'
+};
 
 export const module = {
   rules: [
@@ -24,27 +24,29 @@ export const module = {
           query: {
             babelrc: false,
             presets: [
+              '@babel/preset-typescript',
               [
                 '@babel/preset-env',
                 {
                   targets: {
-                    browsers: '> 0.25%, not dead',
+                    browsers: '> 0.25%, not dead'
                   },
                   useBuiltIns: 'usage',
-                  modules: false,
-                },
+                  corejs: '3',
+                  modules: false
+                }
               ],
-              '@babel/preset-typescript',
-              '@babel/preset-react',
+              '@babel/preset-react'
             ],
             plugins: [
               'react-hot-loader/babel',
-              '@babel/plugin-proposal-class-properties',
-              '@babel/plugin-syntax-dynamic-import',
-            ],
-          },
-        },
-      ],
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
+              '@babel/plugin-syntax-dynamic-import'
+            ]
+          }
+        }
+      ]
     },
     {
       test: /\.css$/,
@@ -56,29 +58,29 @@ export const module = {
           options: {
             plugins: () => [
               autoprefixer({
-                overrideBrowserslist: ['>2%', 'last 2 versions'],
-              }),
-            ],
-          },
-        },
-      ],
+                overrideBrowserslist: ['>2%', 'last 2 versions']
+              })
+            ]
+          }
+        }
+      ]
     },
     {
       test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
-      loader: 'file-loader?name=[name].[ext]',
-    },
-  ],
-}
+      loader: 'file-loader?name=[name].[ext]'
+    }
+  ]
+};
 
 export const resolve = {
-  extensions: ['.ts', '.tsx', '.js', '.json'],
-}
+  extensions: ['.ts', '.tsx', '.js', '.json']
+};
 
 export const plugins = [
   new HtmlWebpackPlugin({
     title: 'Atlantis United',
     inject: false,
     template: htmlTemplate,
-    appMountId: 'app',
-  }),
-]
+    appMountId: 'app'
+  })
+];
