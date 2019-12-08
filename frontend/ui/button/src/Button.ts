@@ -32,7 +32,7 @@ const ButtonUi = styled('button')<ButtonUiProps>(
     fontFamily: theme.fontFamily.sf,
     fontWeight: theme.fontWeights.bold,
     fontSize: theme.fontSizes.s,
-  }))
+  })),
 )
 
 export default ButtonUi

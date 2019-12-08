@@ -13,5 +13,5 @@ export default ({ children }) =>
       defaultLocale: 'ru',
       locale: 'ru',
     },
-    children
+    children,
   )

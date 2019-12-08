@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:latest"],
+  "extends": ["tslint-config-prettier", "tslint:latest"],
   "parserOptions": {
     "ecmaFeatures": {
       "legacyDecorators": true

@@ -46,7 +46,7 @@ const Text = styled.span<TextProps>(
     lowercase: {
       textTransform: 'lowercase',
     },
-  })
+  }),
 )
 
 Text.defaultProps = {

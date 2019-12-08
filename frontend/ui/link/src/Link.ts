@@ -10,8 +10,7 @@ interface LinkProps {
 }
 
 const Link = styled(Text.withComponent('a'), {
-  shouldForwardProp: prop =>
-    !['lineHeight', 'hoverColor', 'underline'].includes(prop),
+  shouldForwardProp: prop => !['lineHeight', 'hoverColor', 'underline'].includes(prop),
 })<LinkProps>(
   ({ theme, hoverColor }) => ({
     textDecoration: 'none',
@@ -25,7 +24,7 @@ const Link = styled(Text.withComponent('a'), {
     [':hover']: {
       textDecoration: 'none',
     },
-  })
+  }),
 )
 
 export default Link

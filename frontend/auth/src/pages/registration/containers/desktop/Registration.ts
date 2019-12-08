@@ -15,5 +15,5 @@ export default connect(
     onChangePassword: value => dispatch(change('password', value)),
     onChangeConfirmPassword: value =>
       dispatch(change('confirmPassword', value)),
-  })
+  }),
 )(Registration)

@@ -5,12 +5,9 @@ import rootReducer from '../reducers'
 import api from './middleware/api'
 
 const configureStore = (initialState, history) => {
-  const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-  const enhancer = composeEnhancers(
-    applyMiddleware(routerMiddleware(history), api(history))
-  )
+  const enhancer = composeEnhancers(applyMiddleware(routerMiddleware(history), api(history)))
 
   const store = createStore(rootReducer, initialState, enhancer)
 

@@ -3,12 +3,10 @@ import { get } from '@styled-system/core'
 import { height, style } from 'styled-system'
 import { ColumnProps, FillProps, LayoutProps, RowProps } from './types'
 
-const fill = (props: FillProps) =>
-  height({ height: props.fill ? '100%' : undefined })
+const fill = (props: FillProps) => height({ height: props.fill ? '100%' : undefined })
 
 const isNumber = n => typeof n === 'number' && !isNaN(n)
-const getWidth = (n, scale) =>
-  get(scale, n, !isNumber(n) || n > 1 ? n : n * 100 + '%')
+const getWidth = (n, scale) => get(scale, n, !isNumber(n) || n > 1 ? n : n * 100 + '%')
 const getScale = (n, scale) => (scale ? scale[n] : getWidth(n, scale))
 
 const flexBasis = style({
@@ -37,7 +35,7 @@ export const Column = styled('div', { shouldForwardProp })<ColumnProps>(
   flexBasis,
   flexGrow,
   flexWrap,
-  fill
+  fill,
 )
 
 export const Row = styled('div', { shouldForwardProp })<RowProps>(
@@ -51,7 +49,7 @@ export const Row = styled('div', { shouldForwardProp })<RowProps>(
   flexBasis,
   flexGrow,
   flexWrap,
-  fill
+  fill,
 )
 
 const Layout = styled.div<LayoutProps>(
@@ -62,7 +60,7 @@ const Layout = styled.div<LayoutProps>(
   justifyContent,
   flexBasis,
   flexGrow,
-  flexShrink
+  flexShrink,
 )
 
 Layout.defaultProps = {

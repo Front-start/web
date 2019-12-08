@@ -45,5 +45,5 @@ export default connect(
     onInit: () => dispatch(init()),
     onAuth: () => history.replace('/auth'),
     onMain: () => history.replace('/'),
-  })
+  }),
 )(Preload)

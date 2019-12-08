@@ -23,5 +23,5 @@ export default persistReducer(
     keyPrefix: 'aunited',
     version: 1,
   },
-  reducer
+  reducer,
 )
