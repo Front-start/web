@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "test-web",
   "private": true,
   "scripts": {
     "dashboard:dev": "yarn workspace @frontend/dashboard dev",
@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "husky": "^2.4.1",
-    "lerna": "3.15.0",
+    "lerna": "^3.15.0",
     "prettier-tslint": "^0.4.2",
     "tslint": "^5.17.0",
     "tslint-config-prettier": "^1.18.0"

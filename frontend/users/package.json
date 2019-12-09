@@ -8,6 +8,9 @@
     "react-router-dom": "5.0.0"
   },
   "dependencies": {
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "@ui/layout": "^0.1.0",
+    "@ui/text": "^0.1.0",
+    "@utils/reducer": "^1.0.0"
   }
 }

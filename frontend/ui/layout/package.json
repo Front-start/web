@@ -2,7 +2,6 @@
   "name": "@ui/layout",
   "version": "0.1.0",
   "license": "MIT",
-  "private": true,
   "main": "src/index.ts",
   "peerDependencies": {
     "jest-emotion": "10.0.11",
@@ -12,6 +11,7 @@
   "dependencies": {
     "@emotion/core": "10.0.10",
     "@emotion/styled": "10.0.12",
-    "styled-system": "5.0.6"
+    "styled-system": "5.0.6",
+    "@ui/theme": "^0.1.0"
   }
 }

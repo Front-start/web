@@ -8,6 +8,7 @@
     "react-router-dom": "5.0.0"
   },
   "dependencies": {
-    "styled-system": "5.0.6"
+    "styled-system": "5.0.6",
+    "@ui/text": "^0.1.0"
   }
 }

@@ -1,7 +1,6 @@
 {
   "name": "@frontend/dashboard",
   "version": "1.0.0",
-  "private": true,
   "main": "src/index.ts",
   "license": "MIT",
   "scripts": {
@@ -44,6 +43,9 @@
   "dependencies": {
     "@emotion/core": "^10.0.9",
     "@emotion/styled": "^10.0.9",
+    "@frontend/auth": "^0.1.0",
+    "@frontend/common": "^1.0.0",
+    "@frontend/users": "^1.0.0",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-client": "^2.4.2",
     "apollo-link": "^1.2.2",
@@ -67,6 +69,12 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "reset.css": "^2.0.2",
-    "styled-tools": "^1.7.1"
+    "styled-tools": "^1.7.1",
+    "@ui/layout": "^0.1.0",
+    "@ui/text": "^0.1.0",
+    "@ui/header": "^0.1.0",
+    "@ui/link": "^0.1.0",
+    "@ui/theme": "^0.1.0",
+    "@utils/reducer": "^1.0.0"
   }
 }
