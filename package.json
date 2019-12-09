@@ -14,8 +14,7 @@
     "tslint-config-prettier": "^1.18.0"
   },
   "workspaces": [
-    "frontend/**/*",
-    "backend/**/*"
+    "frontend/**/*"
   ],
   "husky": {
     "hooks": {
