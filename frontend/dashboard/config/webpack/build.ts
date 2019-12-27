@@ -58,7 +58,7 @@ export const optimization = {
   ],
 }
 
-export const entry = ['@babel/polyfill', './src/index']
+export const entry = ['./src/index']
 
 export const output = {
   path: path.join(__dirname, '../../dist'),

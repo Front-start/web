@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 export const mode = 'development'
 
-export const entry = ['@babel/polyfill', './src/index']
+export const entry = ['./src/index']
 
 export const output = {
   filename: '[name].js',
