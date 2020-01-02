@@ -45,6 +45,7 @@
     "@frontend/auth": "^0.1.0",
     "@frontend/common": "^1.0.0",
     "@frontend/users": "^1.0.0",
+    "@frontend/profile": "^0.1.0",
     "apollo-cache-inmemory": "^1.2.10",
     "apollo-client": "^2.4.2",
     "apollo-link": "^1.2.2",
