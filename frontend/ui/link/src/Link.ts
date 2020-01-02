@@ -6,13 +6,15 @@ interface LinkProps {
   href?: string
   hoverColor?: string
   underline?: boolean
+  width?: string | number
   onClick?: () => void
 }
 
 const Link = styled(Text.withComponent('a'), {
   shouldForwardProp: prop => !['lineHeight', 'hoverColor', 'underline'].includes(prop),
 })<LinkProps>(
-  ({ theme, hoverColor }) => ({
+  ({ theme, hoverColor, width }) => ({
+    width,
     textDecoration: 'none',
     cursor: 'pointer',
     [':hover']: {
