@@ -16,6 +16,7 @@ export interface InputElementProps {
 export interface InputProps extends InputElementProps {
   id?: string
   type?: string
+  spellCheck?: boolean
   readOnly?: boolean
   placeholder?: string
   onChange?: (value: string) => void
@@ -98,6 +99,7 @@ const InputElement = styled('input', {
 const Input = ({
   id,
   type,
+  spellCheck,
   disabled,
   value,
   placeholder,
@@ -113,6 +115,7 @@ const Input = ({
     createElement(InputElement, {
       id,
       type,
+      spellCheck,
       disabled,
       value,
       placeholder,
@@ -135,6 +138,7 @@ Input.defaultProps = {
   color: 'blueBayoux',
   borderColor: 'lightGray',
   onChange: () => null,
+  spellCheck: false,
 }
 
 export default Input
