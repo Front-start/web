@@ -1,7 +1,10 @@
 import gql from 'graphql-tag'
+import { batch } from 'react-redux'
 import { auth } from '@frontend/common/src/constants/security'
 import * as actions from '../constants'
 import stub from './stub'
+import { clear } from '../../registration/actions'
+import { Credentials } from '../../../types'
 
 export const change = (field, value) => ({
   type: actions.change,
@@ -9,8 +12,8 @@ export const change = (field, value) => ({
   value,
 })
 
-export const login = () => async (dispatch, getState, client) => {
-  const { email, password } = getState().auth.login
+export const login = (credentials: Credentials) => async (dispatch, getState, client) => {
+  const { email, password } = credentials || getState().auth.login
 
   try {
     const { data } = await client.query({
@@ -35,14 +38,14 @@ export const login = () => async (dispatch, getState, client) => {
       },
     })
   } catch (e) {
-    dispatch({
-      type: auth,
-      token: stub.token,
-      expiresIn: stub.expiresIn,
-    })
+    batch(() => {
+      dispatch({
+        type: auth,
+        token: stub.token,
+        expiresIn: stub.expiresIn,
+      })
 
-    dispatch({
-      type: actions.clear,
+      dispatch(clear())
     })
   }
 }
