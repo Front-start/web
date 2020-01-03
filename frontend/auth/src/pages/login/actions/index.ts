@@ -3,13 +3,16 @@ import { batch } from 'react-redux'
 import { auth } from '@frontend/common/src/constants/security'
 import * as actions from '../constants'
 import stub from './stub'
-import { clear } from '../../registration/actions'
 import { Credentials } from '../../../types'
 
 export const change = (field, value) => ({
   type: actions.change,
   field,
   value,
+})
+
+export const clear = () => ({
+  type: actions.clear,
 })
 
 export const login = (credentials: Credentials) => async (dispatch, getState, client) => {
