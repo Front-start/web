@@ -7,7 +7,7 @@ export interface InputElementProps {
   color?: string
   borderColor?: string
   disabled?: boolean
-  error?: boolean
+  error?: string
   warning?: boolean
   transparent?: boolean
   select?: boolean
@@ -107,12 +107,12 @@ const Input = ({
   onChange,
   onKeyPress,
   onEnter,
+  error,
   ...props
 }: InputProps) =>
-  createElement(
-    Wrapper,
-    {},
-    createElement(InputElement, {
+  createElement(Wrapper, {
+    error,
+    children: createElement(InputElement, {
       id,
       type,
       spellCheck,
@@ -120,6 +120,7 @@ const Input = ({
       value,
       placeholder,
       readOnly,
+      error,
       onChange: ({ target }) => onChange(target.value),
       onKeyPress: event => {
         if (event.key === 'Enter' && onEnter) {
@@ -132,7 +133,7 @@ const Input = ({
       },
       ...props,
     }),
-  )
+  })
 
 Input.defaultProps = {
   color: 'blueBayoux',
