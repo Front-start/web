@@ -5,6 +5,7 @@ export interface TextProps {
   size?: string
   lineHeight?: 'xs' | 's' | 'm' | 'l'
   weight?: 'light' | 'normal' | 'medium' | 'bold'
+  fStyle?: 'normal' | 'italic'
   color?: string
   align?: 'left' | 'center' | 'right'
   transform?: 'uppercase' | 'lowercase'
@@ -12,12 +13,13 @@ export interface TextProps {
 }
 
 const Text = styled.span<TextProps>(
-  ({ theme, lineHeight, color, size, weight }) => ({
+  ({ theme, lineHeight, color, size, weight, fStyle }) => ({
     fontFamily: theme.fontFamily.sf,
     fontWeight: theme.fontWeights[weight],
     fontSize: theme.fontSizes[size],
     lineHeight: theme.lineHeights[lineHeight],
     color: theme.colors[color],
+    fStyle,
   }),
   switchProp('display', {
     inline: {
@@ -54,6 +56,7 @@ Text.defaultProps = {
   color: 'black',
   size: 'n',
   weight: 'normal',
+  fStyle: 'normal',
   align: 'left',
   display: 'inlineFlex',
 }
