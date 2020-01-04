@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
 import * as actions from '../constants'
 import { login } from '../../login/actions'
 import { batch } from 'react-redux'
@@ -9,11 +9,18 @@ export const change = (field, value) => ({
   value,
 })
 
+export const setErrors = errors => ({
+  type: actions.setErrors,
+  errors,
+})
+
 export const register = () => async (dispatch, getState, client) => {
   try {
     const { email, password } = getState().auth.registration
 
-    const { data } = await client.mutate({
+    const data = { register: { errors: { email: 'asd', password: '123' } } }
+
+    /*await client.mutate({
       mutation: gql`
         mutation Register($input: RegisterUserInput!) {
           register(input: $input) {
@@ -30,13 +37,10 @@ export const register = () => async (dispatch, getState, client) => {
           password,
         },
       },
-    })
+    })*/
 
     if (data.register.errors) {
-      dispatch({
-        type: actions.setErrors,
-        errors: data.register.errors,
-      })
+      dispatch(setErrors(data.register.errors))
     } else {
       batch(() => {
         dispatch(login({ email, password }))

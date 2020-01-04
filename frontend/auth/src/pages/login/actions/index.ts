@@ -1,4 +1,4 @@
-import gql from 'graphql-tag'
+// import gql from 'graphql-tag'
 import { batch } from 'react-redux'
 import { auth } from '@frontend/common/src/constants/security'
 import * as actions from '../constants'
@@ -15,11 +15,24 @@ export const clear = () => ({
   type: actions.clear,
 })
 
+export const setErrors = errors => ({
+  type: actions.setErrors,
+  errors,
+})
+
+export const setToken = (token, expiresIn) => ({
+  type: auth,
+  token,
+  expiresIn,
+})
+
 export const login = (credentials: Credentials) => async (dispatch, getState, client) => {
   const { email, password } = credentials || getState().auth.login
 
   try {
-    const { data } = await client.query({
+    const data = { login: { errors: { email: 'asd', password: '123' } } }
+
+    /*const { data } = await client.query({
       fetchPolicy: 'network-only',
       query: gql`
         query Login($email: String!, $password: String!) {
@@ -39,15 +52,19 @@ export const login = (credentials: Credentials) => async (dispatch, getState, cl
         email,
         password,
       },
-    })
+    })*/
+
+    if (data.login.errors) {
+      dispatch(setErrors(data.login.errors))
+    } else {
+      batch(() => {
+        dispatch(login({ email, password }))
+        dispatch(clear())
+      })
+    }
   } catch (e) {
     batch(() => {
-      dispatch({
-        type: auth,
-        token: stub.token,
-        expiresIn: stub.expiresIn,
-      })
-
+      dispatch(setToken(stub.token, stub.expiresIn))
       dispatch(clear())
     })
   }
