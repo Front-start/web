@@ -1,6 +1,6 @@
 export interface IErrors {
-  firstName?: boolean
-  lastName?: boolean
+  firstName: boolean
+  lastName: boolean
 }
 
 export interface IProfile {

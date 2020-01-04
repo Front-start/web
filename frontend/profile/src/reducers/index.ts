@@ -1,5 +1,5 @@
 import { createReducer } from '@utils/reducer'
-import * as actions from '../constants/profile'
+import * as actions from '../constants/actionTypes'
 import { IProfile, IErrors } from '../types'
 
 interface State {

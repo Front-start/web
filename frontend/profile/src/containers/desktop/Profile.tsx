@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { lifecycle } from 'recompose'
-import { load, change, submit } from '../../actions'
+import { fetchProfile, change, submit } from '../../actions'
 import Profile from '../../components/desktop/Profile'
 
 const enhance = lifecycle({
@@ -15,7 +15,7 @@ export default connect(
     errors: state.profile.errors,
   }),
   dispatch => ({
-    onLoad: () => dispatch(load()),
+    onLoad: () => dispatch(fetchProfile()),
     onChange: (field, value) => dispatch(change(field, value)),
     onSubmit: () => dispatch(submit()),
   }),

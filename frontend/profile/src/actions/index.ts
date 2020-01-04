@@ -1,8 +1,21 @@
 // import gql from 'graphql-tag'
 
-import * as actions from '../constants/profile'
+import * as actionTypes from '../constants/actionTypes'
+import { LoadAction, ChangeAction } from './types'
+import { IProfile } from '../types'
 
-export const load = () => async (dispatch, getState, client) => {
+export const load = (profile: IProfile): LoadAction => ({
+  type: actionTypes.load,
+  profile,
+})
+
+export const change = (field: string, value: string): ChangeAction => ({
+  type: actionTypes.change,
+  field,
+  value,
+})
+
+export const fetchProfile = () => async (dispatch, getState, client) => {
   /*const { data } = await client.query({
       fetchPolicy: 'network-only',
       query: gql`
@@ -26,17 +39,8 @@ export const load = () => async (dispatch, getState, client) => {
 
   const { profile } = getState().me
 
-  dispatch({
-    type: actions.load,
-    profile,
-  })
+  dispatch(load(profile))
 }
-
-export const change = (field: string, value: string) => ({
-  type: actions.change,
-  field,
-  value,
-})
 
 export const submit = () => async (dispatch, getState, client) => {
   const { profile } = getState().profile
