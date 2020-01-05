@@ -30,10 +30,7 @@ const List = ({ rows, intl, sortOrder, onSortSelect }: Props) => (
         <Text size='s'>{intl.formatMessage(messages.sortByFirstName)}:</Text>
         <Space count={2} />
         <Layout basis={200}>
-          <Select
-            onChange={e => onSortSelect({ firstName: e.target.value })}
-            value={sortOrder.firstName}
-          >
+          <Select onChange={val => onSortSelect({ firstName: val })} value={sortOrder.firstName}>
             <Option value='asc'>А -> Я</Option>
             <Option value='desc'>Я -> А</Option>
             <Option disabled value='desc'>
