@@ -11,6 +11,7 @@
     "recompose": "^0.30.0",
     "@ui/layout": "^0.1.0",
     "@ui/text": "^0.1.0",
+    "@ui/select": "^0.1.0",
     "@utils/reducer": "^1.0.0"
   }
 }

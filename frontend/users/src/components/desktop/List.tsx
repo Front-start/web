@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { injectIntl, InjectedIntl } from 'react-intl'
 import { Column, Layout, Row } from '@ui/layout'
 import { Space, Text } from '@ui/text'
+import { Select, Option } from '@ui/select'
 import messages from '../../messages'
 import { UserRow, SortOrder } from '../../types'
 
@@ -28,15 +29,18 @@ const List = ({ rows, intl, sortOrder, onSortSelect }: Props) => (
       <Layout basis={840} justify='flex-end'>
         <Text size='s'>{intl.formatMessage(messages.sortByFirstName)}:</Text>
         <Space count={2} />
-        <select
-          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-            onSortSelect({ firstName: e.target.value })
-          }
-          value={sortOrder.firstName}
-        >
-          <option value='asc'>А -> Я</option>
-          <option value='desc'>Я -> А</option>
-        </select>
+        <Layout basis={200}>
+          <Select
+            onChange={e => onSortSelect({ firstName: e.target.value })}
+            value={sortOrder.firstName}
+          >
+            <Option value='asc'>А -> Я</Option>
+            <Option value='desc'>Я -> А</Option>
+            <Option disabled value='desc'>
+              disabled
+            </Option>
+          </Select>
+        </Layout>
       </Layout>
     </Row>
     <Layout basis={10} />
