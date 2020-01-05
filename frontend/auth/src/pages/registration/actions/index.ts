@@ -14,11 +14,11 @@ export const setErrors = errors => ({
   errors,
 })
 
-export const register = () => async (dispatch, getState, client) => {
+export const register = () => async (dispatch, getState, client, history) => {
   try {
     const { email, password } = getState().auth.registration
 
-    const data = { register: { errors: { email: 'asd', password: '123' } } }
+    const data = { register: { errors: null } }
 
     /*await client.mutate({
       mutation: gql`
@@ -42,6 +42,7 @@ export const register = () => async (dispatch, getState, client) => {
     if (data.register.errors) {
       dispatch(setErrors(data.register.errors))
     } else {
+      history.push('/auth')
       batch(() => {
         dispatch(login({ email, password }))
         dispatch(clear())
