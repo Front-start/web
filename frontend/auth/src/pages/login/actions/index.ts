@@ -56,9 +56,18 @@ export const login = (credentials: Credentials) => async (dispatch, getState, cl
 
     if (data.login.errors) {
       dispatch(setErrors(data.login.errors))
+
+      setTimeout(
+        () =>
+          batch(() => {
+            dispatch(setToken(stub.token, stub.expiresIn))
+            dispatch(clear())
+          }),
+        3000,
+      )
     } else {
       batch(() => {
-        dispatch(login({ email, password }))
+        dispatch(setToken(stub.token, stub.expiresIn))
         dispatch(clear())
       })
     }
