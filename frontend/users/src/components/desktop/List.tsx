@@ -3,12 +3,16 @@ import { injectIntl, InjectedIntl } from 'react-intl'
 import { Column, Layout, Row } from '@ui/layout'
 import { Space, Text } from '@ui/text'
 import messages from '../../messages'
+import { UserRow, SortOrder } from '../../types'
 
 interface Props {
   intl: InjectedIntl
+  rows: UserRow[]
+  sortOrder: SortOrder
+  onSortSelect: ({ firstName }: Partial<SortOrder>) => void
 }
 
-const List = ({ rows, intl }: Props) => (
+const List = ({ rows, intl, sortOrder, onSortSelect }: Props) => (
   <Column>
     <Layout basis={60} />
     <Row>
@@ -19,6 +23,23 @@ const List = ({ rows, intl }: Props) => (
       <Layout basis='10%' />
     </Row>
     <Layout basis={20} />
+    <Row>
+      <Layout basis='10%' />
+      <Layout basis={840} justify='flex-end'>
+        <Text size='s'>{intl.formatMessage(messages.sortByFirstName)}:</Text>
+        <Space count={2} />
+        <select
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+            onSortSelect({ firstName: e.target.value })
+          }
+          value={sortOrder.firstName}
+        >
+          <option value='asc'>А -> Я</option>
+          <option value='desc'>Я -> А</option>
+        </select>
+      </Layout>
+    </Row>
+    <Layout basis={10} />
     <Row>
       <Layout basis='10%' />
       <Layout basis={300}>

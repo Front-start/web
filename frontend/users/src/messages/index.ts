@@ -27,4 +27,8 @@ export default defineMessages({
     id: `${namespace}.lastLogin`,
     defaultMessage: 'последний вход',
   },
+  sortByFirstName: {
+    id: `${namespace}.sortByFirstName`,
+    defaultMessage: 'Сортировка по имени',
+  },
 })
