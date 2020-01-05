@@ -1,4 +1,4 @@
-import { createElement, ReactText } from 'react'
+import { createElement, ChangeEvent } from 'react'
 import styled from '@emotion/styled'
 import { ifProp } from 'styled-tools'
 
@@ -7,8 +7,9 @@ export interface SelectElementProps {
   borderColor?: string
   disabled?: boolean
   placeholder?: string
-  onChange: (value: ReactText) => void
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => (value: string | number) => void
   value: string | number
+  children?: Element[]
 }
 
 const SelectElement = styled('select', {
